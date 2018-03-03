@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="panel-group">
+	<div class="panel panel-default">
+      <div class="panel-body">
+		<p id="frontDesc" class="text-center">The Learning Guidance System is an application where individuals can provide customized sylabi that others may follow to learn a new subject.</p>
+	  </div>
+    </div>
+	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+			<h3 class="text-center">Popular Syllabi</h3>
+			</div>
+				<div class="panel-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+					<th>Syllabus Title</th>
+					<th class="hide-cell">Subject</th>
+					<th class="hide-cell">Description</th>
+					</tr>
+				</thead>
+				<tbody id="popSylTable">
+					{% for syllabus in syllabi %}
+						<tr>
+							<td><a href="syllabus/{{syllabus.syl_id}}">{{ syllabus.title }}</a></td>
+							<td class="hide-cell">{{ syllabus.subject }}</td>
+							<td class="hide-cell">{{ syllabus.description }}</td>
+						</tr>
+					{% endfor %}
+			</table>
+			</div>
+		</div>
+</div>
+
+{% endblock %}
+

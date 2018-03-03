@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="panel-group">
+	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+			{% if session.logged_in %}
+				{% if session.user_id != syl.user_id %}
+					{% if syllabus_saved_already == False %}
+					<form action="{{url_for('add_syllabus_save', id=syl.syl_id)}}" method="post">
+						<input type="hidden" name="_method" value="SAVE">
+						<input type="submit" value="Save" class="btn btn-default pull-right">
+					</form>
+					{% elif syllabus_saved_already == True %}
+					<form action="{{url_for('remove_saved_syllabus', id=syl.syl_id)}}" method="post">
+						<input type="hidden" name="_method" value="DELETE">
+						<input type="submit" value="Unsave" class="btn btn-default pull-right">
+					</form>
+					{% endif %}
+				{% endif %}
+			{% endif %}
+			<h2 class="text-center" style="clear:both;">{{syl.title}}</h2>
+			<h4 class="text-center">{{syl.subject}}</h4>
+			<h4 class="text-center">{{syl.description}}</h4>
+		</div>
+		<div class="panel-body">
+			<div>
+				{{syl.body | safe}}
+			</div>
+		</div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

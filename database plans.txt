@@ -1,0 +1,45 @@
+syllabus_views  --- This table keeps track of how many times a syllabus is viewed
+	view_id
+	syl_id
+	view_date
+	
+CREATE TABLE syllabus_views (view_id INT(20) AUTO_INCREMENT PRIMARY KEY, syl_id INT(20), view_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+	
+syllabus_mods  ---This table stores all of the basic information for syllabus modules
+	mod_id
+	syl_id
+	mod_type
+	instruction
+	last_edited
+	create_date
+
+CREATE TABLE syllabus_mods (mod_id INT(20) AUTO_INCREMENT PRIMARY KEY, syl_id INT(20), mod_type VARCHAR(20), instruction VARCHAR(250), last_edited Date, view_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+	
+module_content_video   --This table holds all content for youtube videos that are linked in the syllabus
+	vid_con_id
+	mod_id
+	vid_url
+	create_date
+	
+CREATE TABLE modual_content_video (vid_con_id INT(20) AUTO_INCREMENT PRIMARY KEY, mod_id INT(20), vid_url VARCHAR(250), last_edited Date, view_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+	
+module_content_links   --This table holds all content for youtube videos that are linked in the syllabus
+	link_con_id
+	mod_id
+	link_url
+	link_text
+	create_date
+	
+CREATE TABLE modual_content_links (link_con_id INT(20) AUTO_INCREMENT PRIMARY KEY, mod_id INT(20), link_url VARCHAR(250), link_text VARCHAR(250), last_edited Date, view_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+	
+module_content_assignments   --This table holds all content for youtube videos that are linked in the syllabus
+	ass_con_id
+	ass_order_num
+	mod_id
+	assignment_text
+	create_date
+	
+CREATE TABLE modual_content_assignments (ass_con_id INT(100) AUTO_INCREMENT PRIMARY KEY, ass_order_num INT(100), mod_id INT(100), assignment_text VARCHAR(250), last_edited Date, view_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+	
+	
+	

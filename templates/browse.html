@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="panel-group">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h3 class="text-center">Search Syllabi</h3>
+			</div>
+			<style>
+				.browseRadioBtns li{
+					border: .25px solid rgb(185, 185, 185);
+					border-radius: 3px;
+					padding: 5px;
+					margin: 5px;
+					list-style-type: none;
+					display: inline-block;
+				}
+
+				.browseRadioBtns li input[type="radio"]{
+					display: none;
+				}
+				
+				.browseRadioBtns li:hover, .browseRadioBtns li label:hover{
+					cursor: pointer;
+				}
+				.searchBtn{
+					margin: 5px 5px 5px 0px;
+				}
+			</style>
+			<div class="panel-body">
+					{% from "includes/_formhelpers.html" import render_field %}
+					<form method="POST" action="">
+						<div class="form-group browseRadioBtns">
+							<ul>
+								{% for subfield in form.browseradio %}
+								<li id="browseradioli{{loop.index-1}}"onclick="checkradio('browseradio-{{loop.index -1}}', 'browseradioli{{loop.index -1}}')" >
+								{{ render_field(subfield) }}
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+						<div class="form-group">
+							{{render_field(form.search, class_="form-control")}}
+							<input type="submit" class="btn btn-primary searchBtn" value="Submit">
+						</div>
+					</form>
+			</div>
+			<div class="panel-body">
+				<h4>Filter Results</h4>
+				<input class="form-control" id="myInput" type="text" placeholder="Search..">
+			<br>
+				<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+					<th>Syllabus Title</th>
+					<th class="hide-cell">Subject</th>
+					<th class="hide-cell">Description</th>
+					</tr>
+				</thead>
+				<tbody id="browseTable">
+					{% for syllabus in syllabi %}
+						<tr>
+							<td><a href="syllabus/{{syllabus.syl_id}}">{{ syllabus.title }}</a></td>
+							<td class="hide-cell">{{ syllabus.subject }}</td>
+							<td class="hide-cell">{{ syllabus.description }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				</table>
+			</div>
+    </div>
+</div>
+<script>
+	document.getElementById('browseradioli0').style.background = '#eae7ea';
+	function checkradio(id, li){
+		document.getElementById(id).checked = true;
+		for(i = 0; i < 4; i++){
+			document.getElementById('browseradioli' + i).style.background = 'white';
+		}
+		document.getElementById(li).style.background = '#eae7ea';
+	}
+</script>
+
+
+{% endblock %}
+
+

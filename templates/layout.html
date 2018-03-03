@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Learning Guidance System</title>
+  <style>
+	#log-list{
+			float: right;
+		}
+	#log-list li a{
+		color: rgb(129, 154, 238);
+	}
+  
+	#frontDesc{
+		padding: 10px;
+		font-size: 1.25em;
+	}
+
+  ol li{
+		padding: 1px;
+		margin: 1px;
+	}
+	
+	@media only screen and (max-width: 430px) {
+		iframe {
+			max-width: 100px;
+			max-height: 75px;
+		}
+
+		.hide-cell{
+			display: none;
+		}
+	}
+	@media only screen and (max-width: 600px) {
+		iframe {
+			max-width: 250px;
+			max-height: 200px;
+		}
+	}
+	@media only screen and (max-width: 750px) {
+		iframe {
+			max-width: 300px;
+			max-height: 250px;
+		}
+		#log-list{
+			float: left;
+		}
+	}
+  </style>
+</head>
+<body>
+    <div class="container">
+		{% include 'includes/_navbar.html' %}
+		{% include 'includes/_messages.html' %}
+        {% block body %} {% endblock %}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+	<script>
+		
+		$(document).ready(function(){
+			setTimeout(function(){
+			document.getElementsByClassName('alert')[0].style.display = 'none';
+		}, 2500);
+		$("#myInput").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#browseTable tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+		});
+
+		CKEDITOR.replace('editor');
+	</script>
+    <script src="script.js"></script>
+</body>
+</html>

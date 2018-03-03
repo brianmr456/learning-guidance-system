@@ -1,0 +1,29 @@
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="text-center">Learning Guidance System</h3>
+        </div>
+        <nav class="navbar navbar-default" style="margin: 5px;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li class="{% if active=='index' %}active{% endif %}"><a href="/">Home</a></li>
+                    <li class="{% if active=='browse' %}active{% endif %}"><a href="/browse">Browse</a></li>
+                    <li class="{% if active=='about' %}active{% endif %}"><a href="/about">About</a></li>
+                    {% if session.logged_in %}
+                    <li class="{% if active=='dashboard' %}active{%endif %}"><a href="/dashboard">Syllabus Dashboard</a></li> 
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav" id="log-list">
+                    {% if session.logged_in %}
+                    <li><a href="/logout">Sign Out</a></li>
+                    {% else %}
+                    <li><a href="/register">Register</a></li>   
+                    <li><a href="/login">Sign In</a></li> 
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
